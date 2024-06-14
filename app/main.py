@@ -24,10 +24,10 @@ async def on_message(message):
     if message.content == '$Hello':
         await message.channel.send('Hello!')
 
-@bot.event
+@client.event
 async def on_message_edit(before, after):
     pin_log_channel_id = 1250813996995575868  # ピン留めされたメッセージを送信するチャンネルのIDを指定
-    pin_log_channel = bot.get_channel(pin_log_channel_id)
+    pin_log_channel = client.get_channel(pin_log_channel_id)
     
     if pin_log_channel is None:
         print("Pin log channel not found")
