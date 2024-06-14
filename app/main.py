@@ -12,13 +12,13 @@ intents.voice_states = True
 client = discord.Client(intents=intents)
 
 @client.event
-async def on_ready(self):
-    print(f'ログインしました: {self.user}')
+async def on_ready():
+    print(f'ログインしました: {client.user}')
 
 @client.event
-async def on_message(self, message):
+async def on_message(message):
     print(f'送信: {message.author}: {message.content}')
-    if message.author == self.user:
+    if message.author == client.user:
         return
 
     if message.content == '$Hello':
