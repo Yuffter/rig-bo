@@ -9,6 +9,7 @@ TOKEN = os.getenv("TOKEN")
 intents = discord.Intents.default()
 intents.message_content = True
 intents.voice_states = True
+intents.guilds = True
 client = discord.Client(intents=intents)
 
 @client.event
@@ -26,7 +27,7 @@ async def on_message(message):
 
 # メッセージがピン留めされたときのイベントハンドラ
 @client.event
-async def on_message_pins_update(channel, last_pin):
+async def on_guild_channel_pins_update(channel, last_pin):
     # ピン留めされたメッセージを取得
     pins = await channel.pins()
     # 最新のピン留めされたメッセージを取得
