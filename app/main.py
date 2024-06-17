@@ -35,10 +35,11 @@ async def on_guild_channel_pins_update(channel, last_pin):
     # メッセージを転送
     guild = channel.guild
     for chn in guild.channels:
-        if chn.name == "ピン留め一覧":
+        if chn.name == "テスト":
             await chn.send(
                 f'#{channel.name} において、メッセージがピン止めされました\n{latest_pin.jump_url}\n{latest_pin.content}'
             )
+            await chn.send(f'{guild.id}')
     """destination_channel = client.get_channel(1250813996995575868)
     await destination_channel.send(
         f'#{channel.name} において、メッセージがピン止めされました\n{latest_pin.jump_url}\n{latest_pin.content}')"""
