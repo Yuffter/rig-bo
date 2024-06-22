@@ -56,7 +56,7 @@ async def do_omikuji(interaction: discord.Interaction):
 
     for i in range(len(probability)):
         if rnd < probability[i]:
-            await interaction.response.send_message(f"{interaction.user.name}の今日の運勢は...\n**{tier[i]}** です")
+            await interaction.response.send_message(f"{interaction.user.nick}の今日の運勢は...\n**{tier[i]}** です")
             break
         else:
             rnd -= probability[i]
