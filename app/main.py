@@ -56,7 +56,21 @@ async def do_omikuji(interaction: discord.Interaction):
 
     for i in range(len(probability)):
         if rnd < probability[i]:
-            await interaction.response.send_message(f"{interaction.user.nick}の今日の運勢は...\n**{tier[i]}** です")
+            guild = interaction.guild
+            member = interaction.user
+            member_in_guild = guild.get_member(member.id)
+            name_in_guild = member_in_guild.display_name
+            user_avatar_url = member_in_guild.display_avatar.url  # ユーザーのアバターURLを取得
+
+            embed = discord.Embed(
+                title="おみくじの結果",
+                description=f"{name_in_guild} の今日の運勢は...\n**{tier[i]}** です",
+                color=discord.Color.blue()
+            )
+            embed.set_thumbnail(url=user_avatar_url)  # Embedにユーザーのアイコンを設定
+
+            await interaction.response.send_message(embed=embed)
+            #await interaction.response.send_message(f"{interaction.user.nick}の今日の運勢は...\n**{tier[i]}** です")
             break
         else:
             rnd -= probability[i]
