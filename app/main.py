@@ -12,6 +12,7 @@ intents = discord.Intents.default()
 intents.message_content = True
 intents.voice_states = True
 intents.guilds = True
+intents.members = True  # メンバー情報へのアクセスを許可する
 client = discord.Client(intents=intents)
 tree = app_commands.CommandTree(client)
 
