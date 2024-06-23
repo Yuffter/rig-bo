@@ -77,7 +77,7 @@ async def do_omikuji(interaction: discord.Interaction):
                 description=f"{name_in_guild} の今日の運勢は...\n**{tier[i]}** です",
                 color=discord.Color.blue()
             )
-            embed.set_image(imageUrl[i])
+            embed.set_image(url=imageUrl[i])
             embed.set_thumbnail(url=user_avatar_url)  # Embedにユーザーのアイコンを設定
 
             await interaction.response.send_message(embed=embed)
