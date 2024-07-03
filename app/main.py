@@ -29,6 +29,9 @@ async def on_message(message):
 
     if message.content == '$Hello':
         await message.channel.send('Hello!')
+    if "社畜" in message.content:
+        emoji = client.get_emoji(1258019788047908964)
+        await message.add_reaction(emoji)
 
 # メッセージがピン留めされたときのイベントハンドラ
 @client.event
