@@ -94,9 +94,9 @@ async def do_omikuji(interaction: discord.Interaction):
                 description="",
                 color=discord.Color.blue()
             )
-            embed.add_field(name="名前",value=f"{name_in_guild}")
-            embed.add_field(name="運勢",value=f"{tier[i]}")
-            embed.add_field(name="一言",value=f"{tierText[i]}")
+            embed.add_field(name="名前",value=f"{name_in_guild}",inline=False)
+            embed.add_field(name="運勢",value=f"{tier[i]}",inline=False)
+            embed.add_field(name="一言",value=f"{tierText[i]}",inline=False)
             embed.set_image(url=imageUrl[i])
             embed.set_thumbnail(url=user_avatar_url)  # Embedにユーザーのアイコンを設定
 
