@@ -89,14 +89,14 @@ async def do_omikuji(interaction: discord.Interaction):
             name_in_guild = member_in_guild.display_name
             user_avatar_url = member_in_guild.display_avatar.url  # ユーザーのアバターURLを取得
 
-            """embed = discord.Embed(
+            embed = discord.Embed(
                 title="おみくじの結果",
-                description=f"{name_in_guild} の今日の運勢は...\n**{tier[i]}** です",
+                description="",
                 color=discord.Color.blue()
-            )"""
+            )
             embed.add_field(name="名前",value=f"{name_in_guild}")
             embed.add_field(name="運勢",value=f"{tier[i]}")
-            embed.add_field(name="一言",value=f"{tierText[i]}"
+            embed.add_field(name="一言",value=f"{tierText[i]}")
             embed.set_image(url=imageUrl[i])
             embed.set_thumbnail(url=user_avatar_url)  # Embedにユーザーのアイコンを設定
 
