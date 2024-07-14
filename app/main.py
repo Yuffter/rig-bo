@@ -54,10 +54,10 @@ async def on_guild_channel_pins_update(channel, last_pin):
 
 @tree.command(name="omikuji", description="おみくじが引けます")
 async def do_omikuji(interaction: discord.Interaction):
-    rnd = random.randint(0, 100)
-    probability = [1, 16, 9, 12, 35, 12, 14, 1]
+    rnd = random.randint(0, 1000)
+    probability = [12, 160, 90, 120, 350, 120, 140, 13,5]
     #probability = [100,0,0,0,0,0,0,0]
-    tier = ["大大吉", "大吉", "中吉", "小吉", "吉", "末吉", "凶", "大凶"]
+    tier = ["大大吉", "大吉", "中吉", "小吉", "吉", "末吉", "凶", "大凶","大大凶"]
     imageUrl = [
         "https://pbs.twimg.com/media/FlRp3-2aMAAJjQ8.jpg",
         "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEimpKtspceL47HWV8CIjCG83OLzaXss2VrjPQt65pfItad0LzQVB13lABAZ8zvViixYeemTkX9O3F2W9vfmDrv2u00nRzGmVD4OIj81oM6zOk84edl8Loj2BvpLIkT4TgWCiPJr4YMSzQZE/s400/omikuji_daikichi.png",
@@ -66,7 +66,19 @@ async def do_omikuji(interaction: discord.Interaction):
         "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgablBON0p3T-N_SO2UoPe8MSmCLzGEUlntQIbe1CNzzzapUDo8bky9O4MQqvj_B0wygWh0mgFVlH6WTM-ovapykZUPabAHWT73KfAnViUAaUSBMdEveRAzJRVaAiMbA8ZxyoKCujlj9iqx/s400/omikuji_kichi.png",
         "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEglx-IJtiH6CUGvdXF6GAfm_Sh8mbWExuxTjGKhWZbbVk8oiJNWfkXNqSg8v8rreg7cdRN5v8RyMpVPPl_y4GAlCDx0YHia7rtMs5QfOE7qiX8_pdi3xv-9mYanwTjNBOg2WFrEgiIo8RcI/s400/omikuji_suekichi.png",
         "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjYwJAbs5msucqL3TQJEYwCuR7ehewBO-F9HuYH_ERwC9wgzSCHUG3EEUvwF9A281BjEG02Lp8tDY4bKdoTDvr1j-QA78qQXN-DKolTIfj97z2zvFDWC3gJBOHfrdW3hgrXPsMS5yli-Sqo/s400/omikuji_kyou.png",
-        "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiM7jD5fZAfHSZ6vk0KH99puqk6oQNcwCgmImN28pHYZey7VxVDIlSnF5ZKxrBx0GVVCyIJXlSRR46S3U3_xMex4LIVAHB_kYJHpJ3RVxjEQLZUEUl6R0B3QidHyZazb-rhwzJxRzI_d6xe/s400/omikuji_daikyou.png"
+        "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiM7jD5fZAfHSZ6vk0KH99puqk6oQNcwCgmImN28pHYZey7VxVDIlSnF5ZKxrBx0GVVCyIJXlSRR46S3U3_xMex4LIVAHB_kYJHpJ3RVxjEQLZUEUl6R0B3QidHyZazb-rhwzJxRzI_d6xe/s400/omikuji_daikyou.png",
+        "https://github.com/Yuffter/rig-bo/blob/main/img/%E5%A4%A7%E5%A4%A7%E5%87%B6.png"
+    ]
+    tierText = [
+        "今日という日は一生に一度の幸運の日。何事にも挑戦を恐れずに！",
+        "運が味方しています。思い切って新しいことを始めましょう",
+        "順調に進む日々が続きます。焦らずに一歩一歩進んでください",
+        "小さな幸せが積み重なる時期。感謝の気持ちを忘れずに",
+        "平穏な日々が続きます。自分のペースを守りましょう",
+        "少しずつ運が上向いてきます。焦らずに努力を続けましょう",
+        "困難なことがあるかもしれませんが、必ず乗り越えられます。信念を持って",
+        "試練の時ですが、冷静に対処することで新たな道が開けます",
+        "最悪の事態に備えましょう。しかし、暗闇の後には必ず光が見えてきます"
     ]
 
     for i in range(len(probability)):
@@ -77,11 +89,14 @@ async def do_omikuji(interaction: discord.Interaction):
             name_in_guild = member_in_guild.display_name
             user_avatar_url = member_in_guild.display_avatar.url  # ユーザーのアバターURLを取得
 
-            embed = discord.Embed(
+            """embed = discord.Embed(
                 title="おみくじの結果",
                 description=f"{name_in_guild} の今日の運勢は...\n**{tier[i]}** です",
                 color=discord.Color.blue()
-            )
+            )"""
+            embed.add_field(name="名前",value=f"{name_in_guild}")
+            embed.add_field(name="運勢",value=f"{tier[i]}")
+            embed.add_field(name="一言",value=f"{tierText[i]}"
             embed.set_image(url=imageUrl[i])
             embed.set_thumbnail(url=user_avatar_url)  # Embedにユーザーのアイコンを設定
 
