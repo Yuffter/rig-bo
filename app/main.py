@@ -67,7 +67,7 @@ async def do_omikuji(interaction: discord.Interaction):
         "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEglx-IJtiH6CUGvdXF6GAfm_Sh8mbWExuxTjGKhWZbbVk8oiJNWfkXNqSg8v8rreg7cdRN5v8RyMpVPPl_y4GAlCDx0YHia7rtMs5QfOE7qiX8_pdi3xv-9mYanwTjNBOg2WFrEgiIo8RcI/s400/omikuji_suekichi.png",
         "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjYwJAbs5msucqL3TQJEYwCuR7ehewBO-F9HuYH_ERwC9wgzSCHUG3EEUvwF9A281BjEG02Lp8tDY4bKdoTDvr1j-QA78qQXN-DKolTIfj97z2zvFDWC3gJBOHfrdW3hgrXPsMS5yli-Sqo/s400/omikuji_kyou.png",
         "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiM7jD5fZAfHSZ6vk0KH99puqk6oQNcwCgmImN28pHYZey7VxVDIlSnF5ZKxrBx0GVVCyIJXlSRR46S3U3_xMex4LIVAHB_kYJHpJ3RVxjEQLZUEUl6R0B3QidHyZazb-rhwzJxRzI_d6xe/s400/omikuji_daikyou.png",
-        "https://github.com/Yuffter/rig-bo/blob/main/img/%E5%A4%A7%E5%A4%A7%E5%87%B6.png"
+        "https://github.com/Yuffter/rig-bo/blob/main/img/%E5%A4%A7%E5%A4%A7%E5%87%B6.png?raw=true"
     ]
     tierText = [
         "今日という日は一生に一度の幸運の日。何事にも挑戦を恐れずに！",
