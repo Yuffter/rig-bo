@@ -55,8 +55,8 @@ async def on_guild_channel_pins_update(channel, last_pin):
 @tree.command(name="omikuji", description="おみくじが引けます")
 async def do_omikuji(interaction: discord.Interaction):
     rnd = random.randint(0, 1000)
-    #probability = [12, 160, 90, 120, 350, 120, 140, 13,5]
-    probability = [0,0,0,0,0,0,0,0,1000]
+    probability = [12, 160, 90, 120, 350, 120, 140, 13,5]
+    #probability = [0,0,0,0,0,0,0,0,1000]
     tier = ["大大吉", "大吉", "中吉", "小吉", "吉", "末吉", "凶", "大凶","大大凶"]
     imageUrl = [
         "https://pbs.twimg.com/media/FlRp3-2aMAAJjQ8.jpg",
