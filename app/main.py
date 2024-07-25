@@ -4,6 +4,7 @@ from dotenv import load_dotenv
 from server import server_thread
 from discord import app_commands
 import random
+from datetime import datetime, timedelta
 
 load_dotenv()
 
@@ -15,6 +16,9 @@ intents.guilds = True
 intents.members = True  # メンバー情報へのアクセスを許可する
 client = discord.Client(intents=intents)
 tree = app_commands.CommandTree(client)
+
+# ユーザーの最終おみくじ引き日時を記録する辞書
+user_omikuji_times = {}
 
 @client.event
 async def on_ready():
@@ -54,6 +58,20 @@ async def on_guild_channel_pins_update(channel, last_pin):
 
 @tree.command(name="omikuji", description="おみくじが引けます")
 async def do_omikuji(interaction: discord.Interaction):
+    user_id = interaction.user.id
+    current_time = datetime.now()
+
+    # 最後におみくじを引いた時間を取得
+    last_omikuji_time = user_omikuji_times.get(user_id)
+    
+    # 最後に引いたのが今日かどうかを確認
+    if last_omikuji_time and last_omikuji_time.date() == current_time.date():
+        await interaction.response.send_message("今日はもうおみくじを引きました。明日また引いてね！")
+        return
+    
+    # おみくじを引いた時間を更新
+    user_omikuji_times[user_id] = current_time
+    
     rnd = random.randint(0, 1000)
     probability = [12, 160, 90, 120, 350, 120, 140, 13,5]
     #probability = [0,0,0,0,0,0,0,0,1000]
