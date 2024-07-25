@@ -73,7 +73,7 @@ async def do_omikuji(interaction: discord.Interaction):
     user_omikuji_times[user_id] = current_time
     
     rnd = random.randint(0, 1000)
-    probability = [12, 160, 90, 120, 350, 120, 140, 13,5]
+    probability = [8, 160, 90, 120, 349, 120, 140, 8,5]
     #probability = [0,0,0,0,0,0,0,0,1000]
     tier = ["大大吉", "大吉", "中吉", "小吉", "吉", "末吉", "凶", "大凶","大大凶"]
     imageUrl = [
@@ -89,7 +89,7 @@ async def do_omikuji(interaction: discord.Interaction):
     ]
     tierText = [
         "君の努力は認められている。来世で。",
-        "このまま突き進め。休む暇はない。」",
+        "このまま突き進め。休む暇はない。",
         "今の努力は実を結ぶ。ただし、ボーナスはカット。",
         "少しずつ進歩。睡眠時間は削れ。",
         "忍耐が鍵。休暇は夢のまた夢。",
