@@ -65,9 +65,9 @@ async def do_omikuji(interaction: discord.Interaction):
     last_omikuji_time = user_omikuji_times.get(user_id)
     
     # 最後に引いたのが今日かどうかを確認
-    if last_omikuji_time and last_omikuji_time.date() == current_time.date():
-        await interaction.response.send_message("今日はもうおみくじを引いたよな？\nそんな甘い考えじゃ、社畜とは言えないな")
-        return
+    #if last_omikuji_time and last_omikuji_time.date() == current_time.date():
+        #await interaction.response.send_message("今日はもうおみくじを引いたよな？\nそんな甘い考えじゃ、社畜とは言えないな")
+        #return
     
     # おみくじを引いた時間を更新
     user_omikuji_times[user_id] = current_time
@@ -88,15 +88,15 @@ async def do_omikuji(interaction: discord.Interaction):
         "https://github.com/Yuffter/rig-bo/blob/main/img/%E5%A4%A7%E5%A4%A7%E5%87%B6.png?raw=true"
     ]
     tierText = [
-        "君の努力は認められている。来世で。",
-        "このまま突き進め。休む暇はない。",
-        "今の努力は実を結ぶ。ただし、ボーナスはカット。",
-        "少しずつ進歩。睡眠時間は削れ。",
-        "忍耐が鍵。休暇は夢のまた夢。",
-        "辛抱強く。昇進はまだまだ先。",
-        "困難は続く。社畜魂を忘れるな。",
-        "試練の日々。残業代は期待するな。",
-        "運命は過酷。働き続けるのみ。"
+        "君の努力は認められている。\n来世で。",
+        "このまま突き進め。\n休む暇はない。",
+        "今の努力は実を結ぶ。\nただし、ボーナスはカット。",
+        "少しずつ進歩。\n睡眠時間は削れ。",
+        "忍耐が鍵。\n休暇は夢のまた夢。",
+        "辛抱強く。\n昇進はまだまだ先。",
+        "困難は続く。\n社畜魂を忘れるな。",
+        "試練の日々。\n残業代は期待するな。",
+        "運命は過酷。\n働き続けるのみ。"
     ]
 
     for i in range(len(probability)):
