@@ -66,7 +66,7 @@ async def do_omikuji(interaction: discord.Interaction):
     
     # 最後に引いたのが今日かどうかを確認
     if last_omikuji_time and last_omikuji_time.date() == current_time.date():
-        await interaction.response.send_message("今日はもうおみくじを引きました。明日また引いてね！")
+        await interaction.response.send_message("今日はもうおみくじを引いたよな？\nそんな甘い考えじゃ、社畜とは言えないな")
         return
     
     # おみくじを引いた時間を更新
