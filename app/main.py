@@ -73,8 +73,8 @@ async def do_omikuji(interaction: discord.Interaction):
     user_omikuji_times[user_id] = current_time
     
     rnd = random.randint(0, 1000)
-    #probability = [8, 160, 90, 120, 349, 120, 140, 8,5]
-    probability = [500,0,0,0,0,0,0,0,500]
+    probability = [8, 160, 90, 120, 349, 120, 140, 8,5]
+    #probability = [500,0,0,0,0,0,0,0,500]
     tier = ["大大吉", "大吉", "中吉", "小吉", "吉", "末吉", "凶", "大凶","大大凶"]
     imageUrl = [
         "https://pbs.twimg.com/media/FlRp3-2aMAAJjQ8.jpg",
