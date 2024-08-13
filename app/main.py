@@ -123,5 +123,71 @@ async def do_omikuji(interaction: discord.Interaction):
         else:
             rnd -= probability[i]
 
+@tree.command(name="omikuji-10", description="おみくじを10連引けます")
+async def do_omikuji_10(interaction: discord.Interaction):
+    user_id = interaction.user.id
+    current_time = datetime.now()
+
+    # 最後におみくじを引いた時間を更新
+    user_omikuji_times[user_id] = current_time
+
+    results = []  # おみくじの結果を保存するリスト
+
+    for _ in range(10):
+        rnd = random.randint(0, 1000)
+        probability = [8, 160, 90, 120, 349, 120, 140, 8, 5]
+        tier = ["大大吉", "大吉", "中吉", "小吉", "吉", "末吉", "凶", "大凶", "大大凶"]
+        imageUrl = [
+            "https://pbs.twimg.com/media/FlRp3-2aMAAJjQ8.jpg",
+            "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEimpKtspceL47HWV8CIjCG83OLzaXss2VrjPQt65pfItad0LzQVB13lABAZ8zvViixYeemTkX9O3F2W9vfmDrv2u00nRzGmVD4OIj81oM6zOk84edl8Loj2BvpLIkT4TgWCiPJr4YMSzQZE/s400/omikuji_daikichi.png",
+            "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjDPy0X_GAJUV8pauG2Pwpn1dC5O7FfDAJdfDQNxcDB2JpPK85arrtw_qaLKdlvD1YQ9KqkHVrWe_Yfo1hJbYOQNwp8Zb-IZmaISp7_jFDX9pwXINlc7aJtIrlwEAMk6lCkQbweriNT9Lvx/s400/omikuji_chuukichi.png",
+            "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhhjqxIjcS2_4hGG8FLlhHSDe1pnMU-XeAXEGWUy10y8Nj-Ohhuchx2ZqxYmPcW2FexxQAdbPyVbJvyCqnAbJ9_DGY7nN3WK0-P0Rz8UlfeouDwdfqgjlx0cBtwXWrTLe7zY8JUGciZcia8/s400/omikuji_syoukichi.png",
+            "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgablBON0p3T-N_SO2UoPe8MSmCLzGEUlntQIbe1CNzzzapUDo8bky9O4MQqvj_B0wygWh0mgFVlH6WTM-ovapykZUPabAHWT73KfAnViUAaUSBMdEveRAzJRVaAiMbA8ZxyoKCujlj9iqx/s400/omikuji_kichi.png",
+            "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEglx-IJtiH6CUGvdXF6GAfm_Sh8mbWExuxTjGKhWZbbVk8oiJNWfkXNqSg8v8rreg7cdRN5v8RyMpVPPl_y4GAlCDx0YHia7rtMs5QfOE7qiX8_pdi3xv-9mYanwTjNBOg2WFrEgiIo8RcI/s400/omikuji_suekichi.png",
+            "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjYwJAbs5msucqL3TQJEYwCuR7ehewBO-F9HuYH_ERwC9wgzSCHUG3EEUvwF9A281BjEG02Lp8tDY4bKdoTDvr1j-QA78qQXN-DKolTIfj97z2zvFDWC3gJBOHfrdW3hgrXPsMS5yli-Sqo/s400/omikuji_kyou.png",
+            "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiM7jD5fZAfHSZ6vk0KH99puqk6oQNcwCgmImN28pHYZey7VxVDIlSnF5ZKxrBx0GVVCyIJXlSRR46S3U3_xMex4LIVAHB_kYJHpJ3RVxjEQLZUEUl6R0B3QidHyZazb-rhwzJxRzI_d6xe/s400/omikuji_daikyou.png",
+            "https://github.com/Yuffter/rig-bo/blob/main/img/%E5%A4%A7%E5%A4%A7%E5%87%B6.png?raw=true"
+        ]
+        tierText = [
+            "君の努力は認められている。\n来世で。",
+            "このまま突き進め。\n休む暇はない。",
+            "今の努力は実を結ぶ。\nただし、ボーナスはカット。",
+            "少しずつ進歩。\n睡眠時間は削れ。",
+            "忍耐が鍵。\n休暇は夢のまた夢。",
+            "辛抱強く。\n昇進はまだまだ先。",
+            "困難は続く。\n社畜魂を忘れるな。",
+            "試練の日々。\n残業代は期待するな。",
+            "運命は過酷。\n働き続けるのみ。"
+        ]
+
+        for i in range(len(probability)):
+            if rnd < probability[i]:
+                results.append((tier[i], tierText[i], imageUrl[i]))
+                break
+            else:
+                rnd -= probability[i]
+
+    guild = interaction.guild
+    member = interaction.user
+    member_in_guild = guild.get_member(member.id)
+    name_in_guild = member_in_guild.display_name
+    user_avatar_url = member_in_guild.display_avatar.url  # ユーザーのアバターURLを取得
+
+    # 10連の結果をEmbedで表示
+    embed = discord.Embed(
+        title="おみくじ10連の結果",
+        description="",
+        color=discord.Color.blue()
+    )
+    embed.add_field(name="名前", value=f"{name_in_guild}", inline=False)
+    
+    for index, result in enumerate(results):
+        embed.add_field(name=f"結果 {index + 1}", value=f"運勢: {result[0]}\n一言: {result[1]}", inline=False)
+        embed.set_image(url=result[2])
+
+    embed.set_thumbnail(url=user_avatar_url)  # Embedにユーザーのアイコンを設定
+
+    await interaction.response.send_message(embed=embed)
+
 server_thread()
 client.run(TOKEN)
