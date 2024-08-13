@@ -173,21 +173,23 @@ async def do_omikuji_10(interaction: discord.Interaction):
     name_in_guild = member_in_guild.display_name
     user_avatar_url = member_in_guild.display_avatar.url  # ユーザーのアバターURLを取得
 
-    # 10連の結果をEmbedで表示
-    embed = discord.Embed(
-        title="おみくじ10連の結果",
-        description="",
-        color=discord.Color.blue()
-    )
-    embed.add_field(name="名前", value=f"{name_in_guild}", inline=False)
-    
+    embeds = []
+
     for index, result in enumerate(results):
-        embed.add_field(name=f"結果 {index + 1}", value=f"運勢: {result[0]}\n一言: {result[1]}", inline=False)
+        embed = discord.Embed(
+            title=f"おみくじ10連の結果 {index + 1}",
+            description="",
+            color=discord.Color.blue()
+        )
+        embed.add_field(name="名前", value=f"{name_in_guild}", inline=False)
+        embed.add_field(name="運勢", value=f"{result[0]}", inline=False)
+        embed.add_field(name="一言", value=f"{result[1]}", inline=False)
         embed.set_image(url=result[2])
+        embed.set_thumbnail(url=user_avatar_url)  # Embedにユーザーのアイコンを設定
+        embeds.append(embed)
 
-    embed.set_thumbnail(url=user_avatar_url)  # Embedにユーザーのアイコンを設定
+    await interaction.response.send_message(embeds=embeds)
 
-    await interaction.response.send_message(embed=embed)
 
 server_thread()
 client.run(TOKEN)
